@@ -1,0 +1,26 @@
+name: DocAssist
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+    - omegaconf==2.3.0
+    - tqdm==4.67.1
+    - wandb==0.15.10
+    - nltk==3.9.1
+    - transformers==4.47.0
+    - num2words==0.5.13
+    - rouge-score
+    - huggingface-hub
+    - peft
+    - pandas
+    - torchtune
+    - transformers
+    - datasets
+    - torch==2.5.1
+    - torchvision==0.20.1
+    - torchao==0.7.0
+    - torchtune

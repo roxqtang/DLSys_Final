@@ -1,0 +1,1 @@
+tune run lora_finetune_single_device --config /scratch/qt2094/DLSYS/DLSys_Final/torchtune/recipes/configs/llama3/8B_lora_single_device.yaml

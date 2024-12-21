@@ -1,0 +1,47 @@
+# Model Arguments
+model:
+  _component_: torchtune.models.llama3.llama3_8b
+
+
+
+
+checkpointer:
+  _component_: torchtune.training.FullModelMetaCheckpointer
+  checkpoint_dir: /scratch/qt2094/DLSYS/models/meta-llama/finetuned_models/
+  checkpoint_files: [
+    meta_model_3.pt
+  ]
+  adapter_checkpoint: /scratch/qt2094/DLSYS/models/meta-llama/finetuned_models/adapter_3.pt
+  recipe_checkpoint: /scratch/qt2094/DLSYS/models/meta-llama/finetuned_models/recipe_state.pt
+  output_dir: /scratch/qt2094/DLSYS/models/meta-llama/llama_finetune_logs
+  model_type: LLAMA3
+
+
+
+
+
+batch_size: 10
+device: cuda
+dtype: bf16
+enable_kv_cache: true
+
+seed: 1234
+
+
+# Tokenizer arguments
+tokenizer:
+  _component_: torchtune.models.llama3.llama3_tokenizer
+  path: /scratch/qt2094/DLSYS/models/meta-llama/original/tokenizer.model
+
+
+# Generation arguments; defaults taken from gpt-fast
+prompt: 
+  system: "You are a medical AI assistant, your job is to Assist the doctor with their working process."
+  user: "下面是一段患者的自述：我3天前无明显诱因下出现气喘，伴胸闷，咳嗽、咳痰，双下肢水肿，伴尿频，尿量不详，遂至当地诊所就诊，诊所予静脉输液治疗（具体不详）后，症状没有缓解。请你根据患者上诉的描述给出一个可能的诊断。"
+
+max_new_tokens: 256
+temperature: 0.6 # 0.8 and 0.6 are popular values to try
+top_k: 300
+
+
+quantizer: null
